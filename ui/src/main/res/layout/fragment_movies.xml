@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.areeb.domain.models.DataState" />
+
+        <variable
+            name="vm"
+            type="com.areeb.ui.viewmodels.movies.MoviesViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/layoutMovies"
+            layout="@layout/layout_movies"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:goneUnless="@{vm.dataState instanceof DataState.Success}" />
+
+        <include
+            android:id="@+id/layoutLoader"
+            layout="@layout/layout_skeleton_movies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/layoutNoInternetConnection"
+            layout="@layout/layout_no_network"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:goneUnless="@{vm.dataState instanceof DataState.Error}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

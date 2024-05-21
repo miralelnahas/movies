@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.areeb.domain.models.movies.Movie" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/padding_8"
+        android:paddingBottom="@dimen/padding_16">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivPoster"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size_230"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadSrc="@{vm.imageUrl}"
+            app:shapeAppearanceOverlay="@style/ImageView.Round" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/Font700.16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="@{vm.title}"
+            app:layout_constraintStart_toStartOf="@id/ivPoster"
+            app:layout_constraintTop_toBottomOf="@id/ivPoster" />
+
+        <TextView
+            android:id="@+id/tvReleaseDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_6"
+            android:background="@drawable/bg_rect_8"
+            android:backgroundTint="@color/gray_300"
+            android:padding="@dimen/padding_6"
+            android:text="@{vm.releaseDate}"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4"
+            android:src="@drawable/ic_rate_star"
+            app:layout_constraintStart_toStartOf="@id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+        <TextView
+            android:id="@+id/tvRate"
+            style="@style/Font700.12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_4"
+            android:text="@{vm.voteAverage}"
+            app:layout_constraintBottom_toBottomOf="@id/ivRate"
+            app:layout_constraintStart_toEndOf="@id/ivRate"
+            app:layout_constraintTop_toTopOf="@id/ivRate" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
